@@ -3,9 +3,24 @@
 div.first-section {
   display: flex;
   gap: 2rem;
+  align-items: flex-start;
+  margin-top: 3rem;
 
   @include mixins.respond-to-max(md) {
     flex-direction: column;
     gap: 1.5rem;
+  }
+}
+
+div.sidebar {
+  flex: 1.5;
+  margin-top: 0.5rem;
+
+  @include mixins.respond-to-max(md) {
+    flex: none;
+  }
+
+  > p {
+    margin-top: 0;
   }
 }

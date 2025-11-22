@@ -1,12 +1,16 @@
 import React from 'react';
 import Intro from '../Intro/Intro.jsx';
-import RecentPiece from '../RecentPiece/RecentPiece.jsx';
+import HomepageViewer from '../HomepageViewer/HomepageViewer.jsx';
 import './FirstSection.scss';
+import Navigation from '../Navigation/Navigation.jsx';
 
-function FirstSection({ site }) {
+function FirstSection({ config }) {
   return <div className='first-section'>
-    <Intro />
-    <RecentPiece />
+    <div className='sidebar'>
+      <Navigation />
+      <Intro />
+    </div>
+    <HomepageViewer />
   </div>;
 }
 
