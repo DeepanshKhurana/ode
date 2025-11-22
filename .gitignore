@@ -23,6 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
-# Markdown
+# Content and generated files
 public/content/pages/*.md
 public/content/pieces/*.md
+public/content/pieces.json
+public/content/collections.json
+
