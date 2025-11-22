@@ -1,9 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
-import LampToggle from "../LampToggle/LampToggle";
-import "./Header.scss";
-
-
 import { useEffect, useState } from "react";
+
+import LampToggle from "../LampToggle/LampToggle";
+
+import "./Header.scss";
 
 function Header({ config }) {
   const location = useLocation();

@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { parseMarkdown } from '../../utils/parseMarkdown';
 import { resolveContentPath } from '../../utils/resolveContentPath';
+
 import './HomepageViewer.scss';
 
 function HomepageViewer({ siteTitle }) {

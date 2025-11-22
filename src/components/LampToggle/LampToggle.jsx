@@ -1,7 +1,9 @@
 import { useEffect, useState, useRef } from "react";
-import "./LampToggle.scss";
+
 import lampOnSound from "../../assets/sfx/lamp-on.mp3";
 import lampOffSound from "../../assets/sfx/lamp-off.mp3";
+
+import "./LampToggle.scss";
 
 function LampToggle() {
   const [dark, setDark] = useState(() => {
