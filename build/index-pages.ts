@@ -1,0 +1,88 @@
+import fs from 'fs';
+import path from 'path';
+import fm from "front-matter";
+import yaml from 'js-yaml';
+
+const pagesPath = './public/content/pages/';
+const indexPath = './public/index/pages.json';
+const errorsPath = './public/index/page-errors.json';
+const configPath = './public/config.yaml';
+
+type Page = {
+  slug: string;
+  title: string;
+  date: string;
+}
+
+type FrontMatter = {
+  title?: string;
+  date?: string | Date;
+  slug?: string;
+};
+
+const configRaw = fs.readFileSync(configPath, 'utf-8');
+const config = yaml.load(configRaw) as any;
+const excludedPages = config?.exclude?.pages || [];
+
+const files = fs.readdirSync(pagesPath);
+if (files.length === 0) {
+  console.log('No files found in the pages directory.');
+  process.exit(0);
+}
+
+const index: Page[] = [];
+const errors: string[] = [];
+
+files.forEach(file => {
+  if (!file.endsWith('.md')) {
+    return;
+  }
+  
+  if (excludedPages.includes(file)) {
+    console.log(`Excluding ${file} (listed in config.yaml)`);
+    return;
+  }
+  
+  const filePath = path.join(pagesPath, file);
+  const stats = fs.statSync(filePath);
+  if (stats.isFile()) {
+    console.log(`Indexing: ${file}, Size: ${stats.size} bytes`);
+    const raw = fs.readFileSync(filePath, 'utf-8');
+    const parsed = fm<FrontMatter>(raw);
+    
+    const { title, date, slug } = parsed.attributes;
+    
+    if (!title || typeof title !== 'string' || title.trim() === '') {
+      console.warn(`Skipping ${file}: Missing or invalid title`);
+      errors.push(file);
+      return;
+    }
+    
+    if (!date) {
+      console.warn(`Skipping ${file}: Missing date`);
+      errors.push(file);
+      return;
+    }
+    
+    if (!slug || typeof slug !== 'string' || slug.trim() === '') {
+      console.warn(`Skipping ${file}: Missing or invalid slug`);
+      errors.push(file);
+      return;
+    }
+    
+    index.push({
+      slug,
+      title: title.trim(),
+      date: new Date(date).toISOString()
+    });
+  }
+});
+
+index.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
+console.log(`pages.json created successfully with ${index.length} entries.`);
+
+if (errors.length > 0) {
+  fs.writeFileSync(errorsPath, JSON.stringify(errors, null, 2));
+  console.log(`Errors logged for ${errors.length} files.`);
+}

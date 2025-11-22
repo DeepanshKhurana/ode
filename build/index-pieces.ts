@@ -1,11 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import fm from "front-matter";
+import yaml from 'js-yaml';
 
 const piecesPath = './public/content/pieces/';
-const indexPath = './public/content/pieces.json';
-const collectionsPath = './public/content/collections.json';
-const errorsPath = './public/content/errors.json';
+const piecesIndexPath = './public/index/pieces.json';
+const collectionsPath = './public/index/pieces-collections.json';
+const errorsPath = './public/index/pieces-errors.json';
+const configPath = './public/config.yaml';
 
 type Piece = {
   slug: string;
@@ -24,7 +26,12 @@ type FrontMatter = {
   title?: string;
   date?: string | Date;
   categories?: string[];
+  slug?: string;
 };
+
+const configRaw = fs.readFileSync(configPath, 'utf-8');
+const config = yaml.load(configRaw) as any;
+const excludedPieces = config?.exclude?.pieces || [];
 
 const files = fs.readdirSync(piecesPath);
 if (files.length === 0) {
@@ -36,6 +43,15 @@ const index: Piece[] = [];
 const errors: string[] = [];
 
 files.forEach(file => {
+  if (!file.endsWith('.md')) {
+    return;
+  }
+  
+  if (excludedPieces.includes(file)) {
+    console.log(`Excluding ${file} (listed in config.yaml)`);
+    return;
+  }
+  
   const filePath = path.join(piecesPath, file);
   const stats = fs.statSync(filePath);
   if (stats.isFile()) {
@@ -43,8 +59,7 @@ files.forEach(file => {
     const raw = fs.readFileSync(filePath, 'utf-8');
     const parsed = fm<FrontMatter>(raw);
     
-    const { title, date, categories } = parsed.attributes;
-    const slug = path.basename(file, path.extname(file));
+    const { title, date, categories, slug } = parsed.attributes;
     
     if (!title || typeof title !== 'string' || title.trim() === '') {
       console.warn(`Skipping ${file}: Missing or invalid title`);
@@ -73,8 +88,8 @@ files.forEach(file => {
       return;
     }
     
-    if (!slug || slug.trim() === '') {
-      console.warn(`Skipping ${file}: Invalid filename`);
+    if (!slug || typeof slug !== 'string' || slug.trim() === '') {
+      console.warn(`Skipping ${file}: Missing or invalid slug`);
       errors.push(file);
       return;
     }
@@ -89,7 +104,7 @@ files.forEach(file => {
 });
 
 index.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
+fs.writeFileSync(piecesIndexPath, JSON.stringify(index, null, 2));
 console.log(`pieces.json created successfully with ${index.length} entries.`);
 
 const pieces: Piece[] = index;

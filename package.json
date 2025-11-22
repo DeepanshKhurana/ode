@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:content && vite build",
-    "build:content": "vite-node build.ts",
+    "build": "npm run build:pieces && npm run build:pages && vite build",
+    "build:pieces": "vite-node build/index-pieces.ts",
+    "build:pages": "vite-node build/index-pages.ts",
     "lint": "eslint .",
     "preview": "vite preview"
   },
