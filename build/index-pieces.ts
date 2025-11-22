@@ -48,7 +48,7 @@ files.forEach(file => {
   }
   
   if (excludedPieces.includes(file)) {
-    console.log(`Excluding ${file} (listed in config.yaml)`);
+    console.log(`Excluding: ${file} (listed in config.yaml)`);
     return;
   }
   

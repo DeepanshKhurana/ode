@@ -39,7 +39,7 @@ files.forEach(file => {
   }
   
   if (excludedPages.includes(file)) {
-    console.log(`Excluding ${file} (listed in config.yaml)`);
+    console.log(`Excluding: ${file} (listed in config.yaml)`);
     return;
   }
   

@@ -5,6 +5,7 @@ site:
   footer: "Oddysseys have been known to change the course of history."
 exclude:
   pages:
-    - obscure.md
+    - skipped-page.md
+    - obscured.md
   pieces:
     - 
