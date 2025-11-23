@@ -38,7 +38,9 @@ function Header({ config }) {
     return (
       <header className="header-bar">
         <div className="header-left collection-view">
-          <Link to="/" className="close-button">close</Link>
+          <Link to="/" className="close-button">
+            {config?.ui?.close || "Close"}
+          </Link>
           <span className="separator">|</span>
           <span className="collection-title">{collection}</span>
         </div>

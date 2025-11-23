@@ -19,7 +19,7 @@ ui:
     randomPiece: "Random Piece"
     new: "New"
     rss: "RSS Feed"
-    bodyOfWork: "Body of Work"
+    close: "Close"
   lowercase: false
   wordsWasted: "{words} words wasted across {pieces} pieces."
 pages:
