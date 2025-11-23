@@ -223,7 +223,7 @@ function BookViewer() {
   const showTitle = currentPosition === 1;
   
   const contentLength = positionData.content.length;
-  const allowBreaks = contentLength > 1000;
+  const allowBreaks = contentLength > 1200;
 
   return (
     <div className="book-viewer">
