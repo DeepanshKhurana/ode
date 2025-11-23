@@ -1,15 +1,22 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { loadConfig } from '../../utils/loadConfig';
 import './Volumes.scss';
 
 function Volumes() {
   const [collections, setCollections] = useState([]);
+  const [config, setConfig] = useState(null);
 
   useEffect(() => {
-    fetch('/index/pieces-collections.json')
-      .then(response => response.json())
-      .then(data => setCollections(data))
-      .catch(error => console.error('Error loading collections:', error));
+    Promise.all([
+      fetch('/index/pieces-collections.json').then(r => r.json()),
+      loadConfig()
+    ])
+      .then(([collectionsData, configData]) => {
+        setCollections(collectionsData);
+        setConfig(configData);
+      })
+      .catch(error => console.error('Error loading data:', error));
   }, []);
 
   if (collections.length === 0) {
@@ -18,7 +25,7 @@ function Volumes() {
 
   return (
     <div className="volumes">
-      <h4>Volumes</h4>
+      <h4>{config?.ui?.labels?.volumes || 'Volumes'}</h4>
       <nav className="volumes-list">
         {collections.map((collection) => (
           <Link 

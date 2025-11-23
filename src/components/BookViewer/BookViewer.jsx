@@ -1,6 +1,7 @@
-import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
+import { useParams, useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { loadConfig } from '../../utils/loadConfig';
 import './BookViewer.scss';
 
 function BookViewer() {
@@ -11,6 +12,7 @@ function BookViewer() {
   const [pagesIndex, setPagesIndex] = useState(null);
   const [collectionsIndex, setCollectionsIndex] = useState(null);
   const [piecesIndex, setPiecesIndex] = useState(null);
+  const [config, setConfig] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentPieceIndex, setCurrentPieceIndex] = useState(0);
   const [currentPosition, setCurrentPosition] = useState(1);
@@ -19,10 +21,11 @@ function BookViewer() {
     const loadData = async () => {
       setLoading(true);
       try {
-        const [pagesRes, collectionsRes, piecesRes] = await Promise.all([
+        const [pagesRes, collectionsRes, piecesRes, configData] = await Promise.all([
           fetch('/index/pieces-pages.json'),
           fetch('/index/pieces-collections.json'),
-          fetch('/index/pieces.json')
+          fetch('/index/pieces.json'),
+          loadConfig()
         ]);
         
         if (!pagesRes.ok || !collectionsRes.ok || !piecesRes.ok) {
@@ -37,6 +40,7 @@ function BookViewer() {
         setPagesIndex(pagesData);
         setCollectionsIndex(collectionsData);
         setPiecesIndex(piecesData);
+        setConfig(configData);
       } catch (error) {
         console.error('Error loading data:', error);
       } finally {
@@ -151,11 +155,11 @@ function BookViewer() {
     return absolutePosition;
   };
 
-  if (loading || !pagesIndex || !collectionsIndex || !piecesIndex) {
+  if (loading || !pagesIndex || !collectionsIndex || !piecesIndex || !config) {
     return (
       <div className="book-viewer">
         <div className="book-viewer-content">
-          <p>Loading...</p>
+          <p>{config?.ui?.labels?.loading || 'Loading...'}</p>
         </div>
       </div>
     );
@@ -168,7 +172,7 @@ function BookViewer() {
       <div className="book-viewer">
         <div className="book-viewer-content">
           <h1>{collection}</h1>
-          <p>No pieces found in this collection.</p>
+          <p>{config?.ui?.labels?.noContent || 'No pieces found in this collection.'}</p>
         </div>
       </div>
     );
@@ -181,7 +185,7 @@ function BookViewer() {
     return (
       <div className="book-viewer">
         <div className="book-viewer-content">
-          <p>Error loading content.</p>
+          <p>{config?.ui?.labels?.errorLoading || 'Error loading content.'}</p>
         </div>
       </div>
     );
@@ -210,17 +214,17 @@ function BookViewer() {
             onClick={handlePrevious}
             disabled={disablePrevious}
           >
-            Previous
+            {config?.ui?.labels?.previous || 'Previous'}
           </button>
           <span className="page-counter">
-            Page {absolutePosition} of {totalCollectionPositions}
+            {config?.ui?.labels?.page || 'Page'} {absolutePosition} {config?.ui?.labels?.of || 'of'} {totalCollectionPositions}
           </span>
           <button 
             className="nav-button next" 
             onClick={handleNext}
             disabled={disableNext}
           >
-            Next
+            {config?.ui?.labels?.next || 'Next'}
           </button>
         </div>
         <div className="reading-panes">
@@ -228,7 +232,9 @@ function BookViewer() {
             <div className={`page-content ${allowBreaks ? 'allow-breaks' : ''}`}>
               {showTitle && pieceMetadata && (
                 <div className="piece-header">
-                  <h2 className="piece-title">{pieceMetadata.title}</h2>
+                  <Link to={`/${currentPieceSlug}`} className="piece-title-link">
+                    <h2 className="piece-title">{pieceMetadata.title}</h2>
+                  </Link>
                   <div className="piece-meta">
                     <span className="piece-date">{pieceMetadata.date}</span>
                   </div>
@@ -244,17 +250,17 @@ function BookViewer() {
             onClick={handlePrevious}
             disabled={disablePrevious}
           >
-            Previous
+            {config?.ui?.labels?.previous || 'Previous'}
           </button>
           <span className="page-counter">
-            Page {absolutePosition} of {totalCollectionPositions}
+            {config?.ui?.labels?.page || 'Page'} {absolutePosition} {config?.ui?.labels?.of || 'of'} {totalCollectionPositions}
           </span>
           <button 
             className="nav-button next" 
             onClick={handleNext}
             disabled={disableNext}
           >
-            Next
+            {config?.ui?.labels?.next || 'Next'}
           </button>
         </div>
       </div>

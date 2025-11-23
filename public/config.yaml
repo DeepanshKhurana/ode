@@ -2,6 +2,22 @@ site:
   title: "Ode to the Ordinary"
   author: "John Doe"
   tagline: "Beauty, memory, and wonder."
+ui:
+  labels:
+    previous: "Previous"
+    next: "Next"
+    loading: "Loading..."
+    noContent: "No pieces found in this collection."
+    errorLoading: "Error loading content."
+    page: "Page"
+    of: "of"
+    volumes: "Volumes"
+    dawn: "Dawn"
+    dusk: "Dusk"
+    lightMode: "Switch to light mode"
+    darkMode: "Switch to dark mode"
+    randomPiece: "Random Piece"
+  wordsWasted: "{words} words wasted across {pieces} pieces."
 exclude:
   pages:
     - skipped-page.md

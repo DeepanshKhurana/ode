@@ -30,4 +30,22 @@ nav {
       border-bottom: none;
     }
   }
+
+  .random-piece-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    text-align: left;
+    cursor: pointer;
+    color: variables.$color-primary;
+    text-decoration: none;
+    border-bottom: 0.1rem solid variables.$color-grey;
+    width: fit-content;
+
+    &:hover {
+      border-bottom: 0.1rem solid variables.$color-grey-2-dark;
+    }
+  }
 }

@@ -86,7 +86,7 @@ function HomepageViewer({ siteTitle }) {
               {pieceMetadata.collections.map((collection, index) => (
                 <span key={collection}>
                   {index > 0 && ', '}
-                  <Link to={`/reader/${collection}`} className="collection-link">
+                  <Link to={`/reader/${collection}?piece=${pieceMetadata.slug}&position=1`} className="collection-link">
                     {collection}
                   </Link>
                 </span>

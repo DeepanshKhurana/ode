@@ -96,7 +96,6 @@
 
   .piece-header {
     display: flex;
-    display: flex;
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 1.5rem;
@@ -104,6 +103,14 @@
     gap: 1rem;
     break-after: avoid;
     page-break-after: avoid;
+
+    .piece-title-link {
+      text-decoration: none;
+      
+      &:hover .piece-title {
+        text-decoration: underline;
+      }
+    }
 
     .piece-title {
       margin: 0;

@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 
 import lampOnSound from "../../assets/sfx/lamp-on.mp3";
 import lampOffSound from "../../assets/sfx/lamp-off.mp3";
+import { loadConfig } from "../../utils/loadConfig";
 
 import "./LampToggle.scss";
 
@@ -13,8 +14,13 @@ function LampToggle() {
     return false;
   });
   const [swing, setSwing] = useState(false);
+  const [config, setConfig] = useState(null);
   const audioOnRef = useRef(null);
   const audioOffRef = useRef(null);
+
+  useEffect(() => {
+    loadConfig().then(setConfig).catch(console.error);
+  }, []);
 
   useEffect(() => {
     audioOnRef.current = new Audio(lampOnSound);
@@ -53,11 +59,11 @@ function LampToggle() {
     <button
       className="lamp-toggle"
       onClick={handleLampClick}
-      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={dark ? (config?.ui?.labels?.lightMode || "Switch to light mode") : (config?.ui?.labels?.darkMode || "Switch to dark mode")}
     >
       <div className="lamp-cord" />
       <span className={`lamp-bulb${dark ? " dark" : ""}${swing ? " swing" : ""}`}>
-        {dark ? "Dusk" : "Dawn"}
+        {dark ? (config?.ui?.labels?.dusk || "Dusk") : (config?.ui?.labels?.dawn || "Dawn")}
       </span>
     </button>
   );
