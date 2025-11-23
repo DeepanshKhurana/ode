@@ -1,6 +1,5 @@
 ---
 title: "The Mark on the Wall"
-author: "Virginia Woolf"
 date: "1917-01-01"
 slug: "the-mark-on-the-wall"
 categories:

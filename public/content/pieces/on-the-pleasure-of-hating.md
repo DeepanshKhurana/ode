@@ -1,6 +1,5 @@
 ---
 title: "On the Pleasure of Hating"
-author: "William Hazlitt"
 date: "1826-01-01"
 slug: "on-the-pleasure-of-hating"
 categories:

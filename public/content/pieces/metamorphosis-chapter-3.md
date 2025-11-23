@@ -1,6 +1,5 @@
 ---
 title: "Metamorphosis: Part III"
-author: "Franz Kafka"
 date: "1915-01-01"
 slug: "metamorphosis-chapter-3"
 categories:

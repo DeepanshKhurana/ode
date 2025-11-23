@@ -1,6 +1,5 @@
 ---
 title: "Metamorphosis: Part I"
-author: "Franz Kafka"
 date: "1915-01-01"
 slug: "metamorphosis-chapter-1"
 categories:

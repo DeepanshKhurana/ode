@@ -1,6 +1,5 @@
 ---
 title: "Metamorphosis: Part II"
-author: "Franz Kafka"
 date: "1915-01-01"
 slug: "metamorphosis-chapter-2"
 categories:
