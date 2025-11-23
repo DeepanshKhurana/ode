@@ -7,6 +7,16 @@
   padding-top: 1rem;
   font-size: 0.75rem;
   float: right;
-  width: 40rem;
-  margin: 1.5rem 1rem;
+  width: 100%;
+  max-width: 40rem;
+  margin: 1rem;
+  box-sizing: border-box;
+
+  @include mixins.respond-to-max(md) {
+    float: none;
+    width: 100%;
+    margin: 1rem 0;
+    padding-right: 1rem;
+    margin-bottom: 2rem;
+  }
 }

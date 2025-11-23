@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import './Intro.scss';
-
 import { parseMarkdown } from '../../utils/parseMarkdown';
 
 function Intro() {

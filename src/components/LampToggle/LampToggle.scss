@@ -11,6 +11,8 @@
   padding: 0;
   cursor: pointer;
   outline: none;
+  position: relative;
+  z-index: 1000;
 
   .lamp-cord {
     width: 0.08rem;
@@ -45,7 +47,6 @@
   }
 
   .lamp-bulb {
-    color: variables.$color-secondary;
     font-size: 1.1rem;
     font-family: inherit;
     margin: 0;
@@ -54,6 +55,7 @@
     text-transform: lowercase;
     order: 2;
     pointer-events: none;
+    color: variables.$color-secondary;
 
     &.dark {
       color: variables.$color-secondary-dark;

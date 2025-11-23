@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { loadConfig } from "../../utils/loadConfig";
 import { makeAppTitle } from "../../utils/makeAppTitle";
 
 import Header from "../Header/Header";
-import FirstSection from "../FirstSection/FirstSection";
+import HomeView from "../HomeView/HomeView";
+import BookViewer from "../BookViewer/BookViewer";
 
 import "./Layout.scss";
 
@@ -35,13 +37,22 @@ function Layout() {
   }
 
   return (
-    <div>
-      <Header config={config} />
-      <FirstSection config={config} />
-      <div className='site-tagline'>
-        {config.site.tagline}
+    <BrowserRouter>
+      <div>
+        <Header config={config} />
+        <Routes>
+          <Route path="/reader/:collection" element={<BookViewer />} />
+          <Route path="*" element={
+            <>
+              <HomeView config={config} />
+              <div className='site-tagline'>
+                {config.site.tagline}
+              </div>
+            </>
+          } />
+        </Routes>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 

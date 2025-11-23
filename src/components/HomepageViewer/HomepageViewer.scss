@@ -4,7 +4,7 @@
 
 .homepage-viewer {
   width: 100%;
-  max-width: 900px;
+  max-width: 56.25rem;
   box-sizing: border-box;
   padding: 0 1rem;
 
@@ -22,6 +22,37 @@ article {
 
   h2 {
     margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .piece-metadata {
+    font-size: 0.95rem;
+    margin: 1rem 0;
+    color: variables.$color-grey;
+
+    .piece-date {
+      display: none;
+    }
+
+    .piece-collections {
+      .collection-link {
+        text-decoration: none;
+        padding-bottom: 0.1rem;
+        color: variables.$color-primary;
+
+        &:hover {
+          border-bottom-color: currentColor;
+        }
+      }
+    }
+  }
+
+  body.dark & .piece-metadata {
+    color: variables.$color-grey-dark;
+
+    .collection-link {
+      color: variables.$color-primary-dark;
+    }
   }
 
   @include mixins.respond-to-max(md) {

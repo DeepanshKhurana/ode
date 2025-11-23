@@ -8,7 +8,7 @@ If these words have found an echo in your heart, or if you wish to share a verse
 
 May your own wanderings be fruitful, and may you always find beauty in the world.
 
-> “The world is too much with us; late and soon,  
+> "The world is too much with us; late and soon,  
 > Getting and spending, we lay waste our powers;—  
-> Little we see in Nature that is ours...”  
+> Little we see in Nature that is ours..."  
 > — William Wordsworth

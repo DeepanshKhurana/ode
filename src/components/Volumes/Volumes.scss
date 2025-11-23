@@ -1,0 +1,37 @@
+@use "../../styles/variables";
+@use "../../styles/mixins";
+
+.volumes {
+  margin-top: 2rem;
+
+  h4 {
+    margin-bottom: 0.75rem;
+    color: variables.$color-primary;
+  }
+
+  body.dark & h4 {
+    color: variables.$color-primary-dark;
+  }
+}
+
+.volumes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .volume-link {
+    text-decoration: none;
+    border-bottom: 0.1rem solid variables.$color-grey;
+    width: fit-content;
+    color: variables.$color-secondary;
+
+    &:hover {
+      border-bottom: 0.1rem solid currentColor;
+    }
+  }
+
+  body.dark & .volume-link {
+    color: variables.$color-secondary-dark;
+    border-bottom: 0.1rem solid variables.$color-grey-dark;
+  }
+}

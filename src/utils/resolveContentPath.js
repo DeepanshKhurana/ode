@@ -19,16 +19,18 @@ export async function resolveContentPath({ pathname }) {
       const pagesRes = await fetch('/index/pages.json');
       const pages = await pagesRes.json();
       isPage = pages.some(page => page.slug === slug);
-    } catch {
-      // ignore
+    } catch (error) {
+      console.log('Error fetching pages index:', error);
+      isPage = false;
     }
     if (!isPage) {
       try {
         const piecesRes = await fetch('/index/pieces.json');
         const pieces = await piecesRes.json();
         isPiece = pieces.some(piece => piece.slug === slug);
-      } catch {
-        // ignore
+      } catch (error) {
+        console.log('Error fetching pieces index:', error);
+        isPiece = false;
       }
     }
     if (isPage) {
