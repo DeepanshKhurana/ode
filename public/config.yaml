@@ -1,7 +1,7 @@
 site:
   title: "Ode to the Ordinary"
   author: "John Doe"
-  tagline: "Beauty, memory, and wonder."
+  tagline: "Isn't life just beauty, memory, and wonder?"
   url: "localhost:5713"
 ui:
   labels:
@@ -20,7 +20,13 @@ ui:
     randomPiece: "Random Piece"
     new: "New"
     rss: "RSS Feed"
+    bodyOfWork: "Body of Work"
   wordsWasted: "{words} words wasted across {pieces} pieces."
+pages:
+  order:
+    - about
+    - body-of-work
+    - reach-out
 exclude:
   pages:
     - skipped-page.md

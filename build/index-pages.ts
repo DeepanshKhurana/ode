@@ -78,7 +78,24 @@ files.forEach(file => {
   }
 });
 
-index.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+const pagesOrder = config?.pages?.order || [];
+if (pagesOrder.length > 0) {
+  index.sort((a, b) => {
+    const aIndex = pagesOrder.indexOf(a.slug);
+    const bIndex = pagesOrder.indexOf(b.slug);
+    
+    if (aIndex === -1 && bIndex === -1) {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    }
+    if (aIndex === -1) return 1;
+    if (bIndex === -1) return -1;
+    
+    return aIndex - bIndex;
+  });
+} else {
+  index.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
 fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
 console.log(`pages.json created successfully with ${index.length} entries.`);
 
