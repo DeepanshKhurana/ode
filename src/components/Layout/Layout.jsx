@@ -23,6 +23,31 @@ function Layout() {
   useEffect(() => {
     if (config?.site) {
       document.title = makeAppTitle(config.site);
+
+      const metaDescription = document.createElement("meta");
+      metaDescription.name = "description";
+      metaDescription.content = config.site.description;
+      document.head.appendChild(metaDescription);
+
+      const ogTitle = document.createElement("meta");
+      ogTitle.setAttribute("property", "og:title");
+      ogTitle.content = config.site.title;
+      document.head.appendChild(ogTitle);
+
+      const ogDescription = document.createElement("meta");
+      ogDescription.setAttribute("property", "og:description");
+      ogDescription.content = config.site.description;
+      document.head.appendChild(ogDescription);
+
+      const ogUrl = document.createElement("meta");
+      ogUrl.setAttribute("property", "og:url");
+      ogUrl.content = config.site.url;
+      document.head.appendChild(ogUrl);
+
+      const ogType = document.createElement("meta");
+      ogType.setAttribute("property", "og:type");
+      ogType.content = "website";
+      document.head.appendChild(ogType);
     }
   }, [config]);
 
