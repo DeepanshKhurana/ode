@@ -2,8 +2,6 @@
 
 > An ode to those who love the craft, an ode to the old internet, an ode to a time before numbers and figures dominated writing, an ode to a time where readers remembered their favourite writers, and an ode to the hope that all of it is still present, somewhere.
 
-----
-
 Ode is an opinionated, minimal and easy to use application set up for writers who do not care about the bells and whistles of the modern internet, who want to publish in an aesthetically pleasing website, and create a better experience for their readers.
 
 ## Inspiration
@@ -18,30 +16,26 @@ Rest assured, I will be using `ode` too!
   <tr>
     <td width="50%">
       <img src=".github/media/homepage_light.png" alt="Homepage - Light Mode">
-      <p align="center"><em>Homepage - Light Mode</em></p>
     </td>
     <td width="50%">
       <img src=".github/media/homepage_dark.png" alt="Homepage - Dark Mode">
-      <p align="center"><em>Homepage - Dark Mode</em></p>
     </td>
   </tr>
   <tr>
     <td width="50%">
       <img src=".github/media/reader_light.png" alt="Reader Mode - Light">
-      <p align="center"><em>Reader Mode - Light</em></p>
     </td>
     <td width="50%">
       <img src=".github/media/reader_dark.png" alt="Reader Mode - Dark">
-      <p align="center"><em>Reader Mode - Dark</em></p>
     </td>
   </tr>
 </table>
 
 ### Lamp Demo with Sound
 
-https://github.com/user-attachments/assets/with_sound.mov
+This is my favourite feature, personally.
 
-> **Note:** Click the video above to watch with sound
+https://github.com/user-attachments/assets/222af674-11f0-4b5a-8232-a31aca8a61b1
 
 ## Features
 
