@@ -82,6 +82,10 @@ function BookViewer() {
     };
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [collection, currentPieceIndex, currentPosition]);
+
   const handleNext = useCallback(() => {
     if (!collectionsIndex || !pagesIndex) return;
     
