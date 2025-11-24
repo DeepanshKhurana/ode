@@ -54,6 +54,7 @@ https://github.com/user-attachments/assets/222af674-11f0-4b5a-8232-a31aca8a61b1
 - **Markdown-based content**: Write your pieces and pages in simple markdown files with front matter; push to publish
 - **Reader mode**: Beautiful paginated reading experience with keyboard navigation (arrow keys)
   - **Checkpointing:** URLs for the reader mode track piece and position so even if you publish more and the collection gets updated, a bookmarked link will always send the reader to the right place in the "book".
+  - **Gestures:** The Reader supports both swipe and trackpad gestures as of `v1.0.2`.
 - **Collections/Volumes**: Automatically organize your pieces into themed collections for curated reading
 - **Dark/Light mode**: Automatic theme switching with user preference persistence with a nice lamp reminiscent of olden times
 - **RSS feed**: Auto-generated RSS feed with full content for your readers to use
@@ -187,6 +188,7 @@ Run individual build scripts:
 - `npm run build:paginate` - Paginate pieces
 - `npm run build:stats` - Calculate statistics
 - `npm run build:rss` - Generate RSS feed
+- `npm run build:sitemap` - Generate Sitemap
 
 ## License
 
