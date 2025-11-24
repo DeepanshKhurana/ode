@@ -33,6 +33,14 @@ You can find a live demo of the app [here](https://ode-demo.vercel.app/).
       <img src=".github/media/reader_dark.png" alt="Reader Mode - Dark">
     </td>
   </tr>
+  <tr>
+    <td width="50%">
+      <img src=".github/media/caps_light.png" alt="Default case - Light">
+    </td>
+    <td width="50%">
+      <img src=".github/media/caps_dark.png" alt="Default case - Dark">
+    </td>
+  </tr>
 </table>
 
 ### Lamp Demo with Sound
@@ -43,16 +51,16 @@ https://github.com/user-attachments/assets/222af674-11f0-4b5a-8232-a31aca8a61b1
 
 ## Features
 
-- **Markdown-based content**: Write your pieces and pages in simple markdown files with front matter
+- **Markdown-based content**: Write your pieces and pages in simple markdown files with front matter; push to publish
 - **Reader mode**: Beautiful paginated reading experience with keyboard navigation (arrow keys)
-- **Collections/Volumes**: Organize your pieces into themed collections for curated reading
-- **Dark/Light mode**: Automatic theme switching with user preference persistence
-- **RSS feed**: Auto-generated RSS feed with full content for your readers
-- **Body of Work**: Chronological archive of all your pieces, organized by month/year
-- **Random piece**: Let readers discover content serendipitously
+- **Collections/Volumes**: Automatically organize your pieces into themed collections for curated reading
+- **Dark/Light mode**: Automatic theme switching with user preference persistence with a nice lamp reminiscent of olden times
+- **RSS feed**: Auto-generated RSS feed with full content for your readers to use
+- **Body of Work**: Chronological archive of all your pieces, organized by month/year; order is up to you
+- **Random piece**: Let readers discover content serendipitously and the continue reading
 - **Build-time generation**: Static pages and indexes generated during build for optimal performance
 - **Fully customizable**: All UI labels, site metadata, and page order configurable via `config.yaml`
-- **No tracking, no analytics, no boxes, no search**: Just writing and reading
+- **No tracking, no analytics, no boxes, no search, no media**: Just writing and reading
 
 ## Tech Stack
 
@@ -64,6 +72,24 @@ https://github.com/user-attachments/assets/222af674-11f0-4b5a-8232-a31aca8a61b1
 - **Front Matter** for parsing markdown metadata
 
 ## Getting Started
+
+### Deployment Gotchas!
+
+Once you have your Fork or branch ready, you can deploy the app but the reader position Permalinks as well as the Body of Work links will fail. This is due to SPA handling of paths and (from my understanding) how React works. But this can be fixed.
+
+#### Easy Mode: Deploy to Vercel
+
+You can directly to Vercel below. `vercel.json` already has the fixes Vercel will need.
+
+https://github.com/DeepanshKhurana/ode/blob/46873b31df3d4b02bbb375d4389173a1b6ac3f6b/vercel.json#L1-L12
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FDeepanshKhurana%2Fode)
+
+#### Pro Mode: nginx Configuration
+
+If you are like me, you probably have your own server where you will need to handle SPA routing. If you are using nginx, a template is already provided.
+
+https://github.com/DeepanshKhurana/ode/blob/81c9c2916c5fade480a017b277be7eb1dc799cb4/nginx-template#L1-L32
 
 ### From WordPress
 
@@ -106,32 +132,17 @@ npm run preview
 
 ## Configuration
 
-Edit `public/config.yaml` to customize your site:
+Edit `public/config.yaml` to customize your site. You can handle quite a few things here:
 
-```yaml
-site:
-  title: "Your Site Title"
-  author: "Your Name"
-  tagline: "Your tagline"
-  url: "yourdomain.com"
+- Change your site’s name, author, and vibe at the top.
+- Tweak button text and messages to sound how you want.
+- Pick which pages show up first in the menu.
+- Hide any pages or pieces you don’t want public.
+- Set how collections are sorted—oldest first or newest first.
+- Rename the light/dark mode switches.
+- Edit the “words wasted” summary to your liking.
 
-ui:
-  labels:
-    # Customize all UI text
-  wordsWasted: "{words} words wasted across {pieces} pieces."
-
-pages:
-  order:
-    - about
-    - body-of-work
-    - reach-out
-
-exclude:
-  pages:
-    - draft-page.md
-  pieces:
-    - draft-piece.md
-```
+https://github.com/DeepanshKhurana/ode/blob/2e61bbe7eadcc36ff9b05c13e4e4d71ab4c885b1/public/config.yaml#L1-L41
 
 ## Writing Content
 
@@ -149,7 +160,7 @@ categories:
   - fiction
 ---
 
-Your content here...
+Write to your heart's desire.
 ```
 
 ### Pages
@@ -163,7 +174,7 @@ slug: "about"
 date: 2021-06-14
 ---
 
-Your page content here...
+Tell everyone everything!
 ```
 
 ## Build Scripts
