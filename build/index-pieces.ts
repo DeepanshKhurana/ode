@@ -128,6 +128,34 @@ pieces.forEach(piece => {
 });
 
 const collections = Object.values(collectionsMap);
+
+const readerOrderConfig = config?.reader?.order || {};
+
+if (readerOrderConfig['default']) {
+  const defaultOrder = readerOrderConfig['default'];
+  if (defaultOrder !== 'ascending' && defaultOrder !== 'descending') {
+    throw new Error(`Invalid default order "${defaultOrder}" in config.yaml. Must be "ascending" or "descending".`);
+  }
+}
+
+collections.forEach(collection => {
+  const order = readerOrderConfig[collection.name] || readerOrderConfig['default'] || 'descending';
+  
+  if (order !== 'ascending' && order !== 'descending') {
+    throw new Error(`Invalid order "${order}" for collection "${collection.name}". Must be "ascending" or "descending".`);
+  }
+
+  console.log(`Sorting collection "${collection.name}" ${order} order, using ${readerOrderConfig[collection.name] ? 'custom' : 'default'} setting.`);
+  collection.pieces.sort((a, b) => {
+    const pieceA = pieces.find(p => p.slug === a);
+    const pieceB = pieces.find(p => p.slug === b);
+    if (!pieceA || !pieceB) return 0;
+    const dateA = new Date(pieceA.date).getTime();
+    const dateB = new Date(pieceB.date).getTime();
+    return order === 'ascending' ? dateA - dateB : dateB - dateA;
+  });
+});
+
 fs.writeFileSync(collectionsPath, JSON.stringify(collections, null, 2));
 console.log(`collections.json created successfully with ${collections.length} categories and ${pieces.length} total pieces.`);
 

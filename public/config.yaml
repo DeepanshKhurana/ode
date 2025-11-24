@@ -34,3 +34,7 @@ exclude:
     - obscured.md
   pieces:
     -
+reader:
+  order:
+    default: descending
+    Metamorphosis: ascending
