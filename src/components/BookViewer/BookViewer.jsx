@@ -1,5 +1,5 @@
 import { useParams, useSearchParams, useNavigate, Link } from 'react-router-dom';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { loadConfig } from '../../utils/loadConfig';
 import './BookViewer.scss';
@@ -17,6 +17,7 @@ function BookViewer() {
   const [loading, setLoading] = useState(true);
   const [currentPieceIndex, setCurrentPieceIndex] = useState(0);
   const [currentPosition, setCurrentPosition] = useState(1);
+  const isNavigatingRef = useRef(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -141,6 +142,65 @@ function BookViewer() {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleNext, handlePrevious]);
+
+  useEffect(() => {
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const minSwipeDistance = 50;
+
+    const handleTouchStart = (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    };
+
+    const handleTouchEnd = (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    };
+
+    const handleSwipe = () => {
+      const swipeDistance = touchStartX - touchEndX;
+      
+      if (Math.abs(swipeDistance) < minSwipeDistance) return;
+      
+      if (swipeDistance > 0) {
+        handleNext();
+      } else {
+        handlePrevious();
+      }
+    };
+
+    const handleWheelDebounced = (e) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 10) {
+        e.preventDefault();
+        
+        if (isNavigatingRef.current) {
+          return;
+        }
+        
+        isNavigatingRef.current = true;
+        
+        if (e.deltaX > 0) {
+          handleNext();
+        } else {
+          handlePrevious();
+        }
+        
+        setTimeout(() => {
+          isNavigatingRef.current = false;
+        }, 500);
+      }
+    };
+
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchend', handleTouchEnd);
+    window.addEventListener('wheel', handleWheelDebounced, { passive: false });
+    
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('wheel', handleWheelDebounced);
     };
   }, [handleNext, handlePrevious]);
 

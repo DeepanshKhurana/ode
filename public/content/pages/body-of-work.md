@@ -1,7 +1,7 @@
 ---
 title: "Body of Work"
 slug: "body-of-work"
-date: 2025-11-24T09:39:37.332Z
+date: 2025-11-24T16:25:15.545Z
 ---
 
 ### January 1945
