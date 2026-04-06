@@ -1,3 +1,4 @@
+[![AI-DECLARATION: pair](https://img.shields.io/badge/䷼%20AI--DECLARATION-pair-ffedd5?labelColor=ffedd5)](https://ai-declaration.md)
 [![Build and Publish](https://github.com/DeepanshKhurana/ode/actions/workflows/publish.yml/badge.svg)](https://github.com/DeepanshKhurana/ode/actions/workflows/publish.yml)
 
 # Ode
