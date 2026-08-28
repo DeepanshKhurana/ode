@@ -166,7 +166,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Made with love and labour by Deepansh Khurana | MIT License`,
+      copyright: `Made with love and labour, and backed by the <a href="https://dimwit.me/pledge" target="_blank" rel="noopener noreferrer">Dimwit Pledge</a> | MIT License`,
     },
     prism: {
       theme: prismThemes.github,

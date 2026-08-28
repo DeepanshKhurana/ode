@@ -1,11 +1,14 @@
 [![AI-DECLARATION: pair](https://img.shields.io/badge/䷼%20AI--DECLARATION-pair-ffedd5?labelColor=ffedd5)](https://ai-declaration.md)
 [![Build and Publish](https://github.com/DeepanshKhurana/ode/actions/workflows/publish.yml/badge.svg)](https://github.com/DeepanshKhurana/ode/actions/workflows/publish.yml)
+[![Dimwit Pledge](https://dimwit.me/pledge.svg)](https://dimwit.me/pledge)
 
 # Ode
 
 > An ode to those who love the craft, an ode to the old internet, an ode to a time before numbers and figures dominated writing, an ode to a time where readers remembered their favourite writers, and an ode to the hope that all of it is still present, somewhere.
 
 Ode is for writers who want to publish in an aesthetically pleasing website, who ignore the bells and whistles of the modern internet, and who want to create a better experience for their readers. It is opinionated, minimal, and easy to use, guided by its own [ethos](https://github.com/DeepanshKhurana/ode/blob/main/docs/ETHOS.md).
+
+> This project is backed by the [Dimwit Pledge](https://dimwit.me/pledge).
 
 ## Inspiration
 
